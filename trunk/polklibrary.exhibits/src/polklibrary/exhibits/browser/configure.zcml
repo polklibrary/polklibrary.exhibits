@@ -1,0 +1,29 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="polklibrary.exhibits">
+
+  <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
+  <include package="z3c.jbot" file="meta.zcml" />
+  <browser:jbot
+      directory="overrides"
+      layer="polklibrary.exhibits.interfaces.IPolklibraryExhibitsLayer"
+      />
+
+    <browser:page
+        for="*"
+        name="exhibit_view"
+        class=".exhibit.ExhibitView"
+        permission="zope2.View"
+        />
+        
+      
+      
+  <!-- Publish static files -->
+  <browser:resourceDirectory
+      name="polklibrary.exhibits"
+      directory="static"
+      />
+
+</configure>

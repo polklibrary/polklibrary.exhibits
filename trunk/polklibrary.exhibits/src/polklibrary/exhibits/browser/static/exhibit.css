@@ -1,0 +1,36 @@
+body {
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+
+#edit {
+    background-color: #333;
+    border-bottom: 1px solid #666;
+    font-size:0; 
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10000;
+}
+#edit a{
+    background-color: #0077AD;
+    border-right: 1px solid #006390;
+    color: white;
+    display: inline-block;
+    font-size:14px; 
+    padding: 5px 10px;
+    text-decoration: none !important;
+}
+#edit a:hover{ background-color: #006492; }
+#edit  .exhibit-published { background-color: #38973C; }
+#edit  .exhibit-published:hover { background-color: #973938; }
+#edit  .exhibit-private { background-color: #973938; }
+#edit  .exhibit-private:hover { background-color: #38973C; }

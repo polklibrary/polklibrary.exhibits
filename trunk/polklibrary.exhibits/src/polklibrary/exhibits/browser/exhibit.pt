@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="plone"
+	  lang="en">
+      
+<head>
+    <title>${view/portal/Title} - ${view/exhibit/Title}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link href="${view/exhibit/absolute_url}/++resource++polklibrary.exhibits/exhibit.css"  type="text/css" rel="stylesheet" />
+    <script data-bundle="basic" src="${view/portal/absolute_url}/++plone++static/components/jquery/dist/jquery.min.js" type="text/javascript" ></script>
+    
+    <script type="text/javascript">
+        <tal:block replace="structure view/exhibit_js" />
+    </script>
+   
+    <style>
+        ${view/exhibit_css}
+    </style>
+    
+</head>
+<body class="${view/body_classes}">
+	
+    <div id="edit" tal:condition="view/is_editor">
+        <a class="exhibit-published" 
+           title="Make Private?"
+           tal:condition="view/is_published"
+           tal:attributes="href python:view.change_state_tokenize(view.exhibit.absolute_url() + '/content_status_modify?workflow_action=retract')">Currently: Published</a>
+        <a class="exhibit-private" 
+           title="Make Published?"
+           tal:condition="not: view/is_published"
+           tal:attributes="href python:view.change_state_tokenize(view.exhibit.absolute_url() + '/content_status_modify?workflow_action=publish')">Currently: Private</a>
+        <a href="${view/context/absolute_url}/edit">Edit</a>
+        <a href="${view/exhibit/absolute_url}/++add++polklibrary.exhibits.models.exitem">Add Content</a>
+        <a href="${view/exhibit/absolute_url}/folder_contents">Exhibit Contents</a>
+        <a href="${view/exhibit/absolute_url}/edit">Edit Exhibit</a>
+    </div>
+        
+    
+    <div id="header">
+        <div id="title">
+            ${view/exhibit/Title}
+            <br />
+            <img id="banner" src="${view/portal/absolute_url}/++theme++uwosh/images/archives.png" alt="Archives &amp; ARC" title="Archives &amp; ARC" />
+        </div>
+        
+    </div>
+    
+    <div id="breadcrumbs">
+        <tal:block repeat="crumb view/breadcrumbs">
+            <a href="${crumb/absolute_url}"> ${crumb/Title} </a>
+            <span tal:condition="not:repeat/crumb/end">&#9002;</span>
+        </tal:block>
+    </div>
+    
+    <div id="content">
+        <tal:block replace="structure view/get_body" />
+    </div>
+    
+</body>
+</html>
